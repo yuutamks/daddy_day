@@ -63,12 +63,24 @@ class VisualNovelEngine {
 
   // ─── Event Setup ───
   setupEvents() {
-    // Start button
-    this.startButton.addEventListener('click', () => this.start());
+    // Start button — both click and touch for mobile
+    this.startButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.start();
+    });
+    this.startButton.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.start();
+    });
 
-    // Click to advance (on dialog box and app)
+    // Click to advance (desktop — only fires if touch didn't already handle it)
     this.app.addEventListener('click', (e) => {
       if (!this.hasStarted) return;
+      if (this._touchHandled) {
+        this._touchHandled = false;
+        return;
+      }
       
       // Don't advance if clicking on buttons or controls
       if (e.target.closest('#audio-toggle') || 
@@ -93,7 +105,7 @@ class VisualNovelEngine {
       }
     });
 
-    // Touch support
+    // Touch support — call handleClick directly on touch
     this.app.addEventListener('touchend', (e) => {
       if (!this.hasStarted) return;
       if (e.target.closest('#audio-toggle') || 
@@ -102,8 +114,12 @@ class VisualNovelEngine {
           e.target.closest('.final-restart')) {
         return;
       }
-      // Prevent double-fire
+      // Prevent the subsequent click event from also firing
       e.preventDefault();
+      // Flag to skip the click handler if it fires anyway
+      this._touchHandled = true;
+      // Actually advance the story on touch
+      this.handleClick();
     });
   }
 
