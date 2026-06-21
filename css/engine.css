@@ -437,7 +437,7 @@
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   #dialog-container {
-    padding: var(--space-sm) var(--space-md) var(--space-md);
+    padding: var(--space-sm) var(--space-md) calc(var(--space-md) + 40px + env(safe-area-inset-bottom, 0px));
   }
 
   #dialog-box {
@@ -453,7 +453,7 @@
   }
 
   #choices-container {
-    padding: var(--space-lg);
+    padding: var(--space-lg) var(--space-lg) calc(var(--space-lg) + 40px + env(safe-area-inset-bottom, 0px));
   }
 
   .choice-btn {
