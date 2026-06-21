@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Una novela visual interactiva dedicada al Día del Padre. Una historia de ausencia, crecimiento, perdón y celebración.">
+  <meta name="theme-color" content="#0d0f1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Feliz Día del Padre — Una Novela Visual</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/engine.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div id="vn-app">
+
+    <!-- ═══ Loading Screen ═══ -->
+    <div id="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Preparando tu historia...</div>
+    </div>
+
+    <!-- ═══ Title Screen ═══ -->
+    <div id="title-screen">
+      <div class="title-decoration"></div>
+      <div class="title-emoji">👨‍👦</div>
+      <h1 class="title-main">Feliz Día del Padre</h1>
+      <p class="title-subtitle">Una historia de ausencia, crecimiento, perdón y celebración</p>
+      <button id="start-button">Comenzar Historia</button>
+      <p class="title-hint">Haz clic o presiona Enter para avanzar en la historia</p>
+    </div>
+
+    <!-- ═══ Background Layer ═══ -->
+    <div id="bg-layer">
+      <img id="bg-image-a" class="bg-image active" src="" alt="" aria-hidden="true">
+      <img id="bg-image-b" class="bg-image inactive" src="" alt="" aria-hidden="true">
+      <div class="bg-overlay"></div>
+      <div class="vignette"></div>
+      <div id="mood-glow" class="mood-glow"></div>
+    </div>
+
+    <!-- ═══ Effects Canvas ═══ -->
+    <canvas id="effects-canvas" aria-hidden="true"></canvas>
+
+    <!-- ═══ Photo Layer ═══ -->
+    <div id="photo-container">
+      <div class="photo-frame">
+        <img id="scene-photo" src="" alt="Foto familiar">
+        <p id="photo-caption" class="photo-caption"></p>
+      </div>
+    </div>
+
+    <!-- ═══ Chapter Card Overlay ═══ -->
+    <div id="chapter-card">
+      <div class="chapter-card-line"></div>
+      <div id="chapter-card-title" class="chapter-card-title"></div>
+      <div id="chapter-card-subtitle" class="chapter-card-subtitle"></div>
+      <div class="chapter-card-hint">Haz clic para continuar</div>
+    </div>
+
+    <!-- ═══ Choices Container ═══ -->
+    <div id="choices-container"></div>
+
+    <!-- ═══ Dialog Box ═══ -->
+    <div id="dialog-container">
+      <div id="dialog-box" class="hidden">
+        <div id="narrator-name"></div>
+        <div id="dialog-text"></div>
+        <div id="click-indicator">
+          <span>Continuar</span>
+          <span class="indicator-arrow">▼</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Final Overlay ═══ -->
+    <div id="final-overlay"></div>
+
+    <!-- ═══ UI Controls ═══ -->
+    <div id="chapter-progress">
+      <div id="progress-fill"></div>
+    </div>
+    <div id="chapter-info"></div>
+    <button id="audio-toggle" aria-label="Silenciar/Activar música">🎵</button>
+
+    <!-- ═══ Background Music ═══ -->
+    <audio id="bg-music" src="assets/audio/mywill.mp3" preload="auto" loop></audio>
+
+  </div>
+
+  <!-- Scripts (load in order: data → systems → engine) -->
+  <script src="js/story.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/engine.js"></script>
+</body>
+</html>

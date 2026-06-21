@@ -1,0 +1,227 @@
+/* ═══════════════════════════════════════════════════════════
+   animations.css — Transiciones y efectos entre escenas
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Scene Transitions ─── */
+.scene-transition-fade {
+  animation: sceneFade 0.8s ease-in-out;
+}
+
+@keyframes sceneFade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.scene-transition-slide-left {
+  animation: slideFromRight 0.6s ease-out;
+}
+
+@keyframes slideFromRight {
+  from { 
+    opacity: 0; 
+    transform: translateX(40px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+/* ─── Photo Transitions ─── */
+.photo-enter {
+  animation: photoSlideIn 0.7s ease-out forwards;
+}
+
+@keyframes photoSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85) rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -58%) scale(1) rotate(-1.5deg);
+  }
+}
+
+.photo-exit {
+  animation: photoSlideOut 0.5s ease-in forwards;
+}
+
+@keyframes photoSlideOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -58%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+/* ─── Text Reveal ─── */
+.text-reveal {
+  animation: textReveal 0.4s ease-out;
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Background Transitions ─── */
+.bg-crossfade-in {
+  animation: bgCrossfade 1.2s ease-in-out forwards;
+}
+
+@keyframes bgCrossfade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.bg-zoom-in {
+  animation: bgZoomIn 8s ease-out forwards;
+}
+
+@keyframes bgZoomIn {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* ─── Mood Glow Effects ─── */
+.mood-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 1.5s ease, background 1.5s ease;
+}
+
+.mood-glow.active {
+  opacity: 1;
+}
+
+.mood-glow.nostalgic {
+  background: radial-gradient(ellipse at center bottom, rgba(212, 165, 116, 0.08) 0%, transparent 70%);
+}
+
+.mood-glow.melancholic {
+  background: radial-gradient(ellipse at center bottom, rgba(122, 139, 168, 0.08) 0%, transparent 70%);
+}
+
+.mood-glow.determined {
+  background: radial-gradient(ellipse at center bottom, rgba(199, 149, 90, 0.08) 0%, transparent 70%);
+}
+
+.mood-glow.hopeful {
+  background: radial-gradient(ellipse at center bottom, rgba(136, 176, 122, 0.08) 0%, transparent 70%);
+}
+
+.mood-glow.dark {
+  background: radial-gradient(ellipse at center, rgba(74, 85, 104, 0.15) 0%, rgba(13, 15, 26, 0.2) 70%);
+}
+
+.mood-glow.regret {
+  background: radial-gradient(ellipse at center bottom, rgba(139, 122, 158, 0.08) 0%, transparent 70%);
+}
+
+.mood-glow.celebration {
+  background: radial-gradient(ellipse at center bottom, rgba(244, 208, 63, 0.12) 0%, transparent 70%);
+}
+
+.mood-glow.warm {
+  background: radial-gradient(ellipse at center bottom, rgba(232, 168, 124, 0.08) 0%, transparent 70%);
+}
+
+/* ─── Vignette Overlay ─── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(13, 15, 26, 0.6) 100%);
+}
+
+/* ─── Screen Flash ─── */
+.screen-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: white;
+  pointer-events: none;
+  animation: flashEffect 0.6s ease-out forwards;
+}
+
+@keyframes flashEffect {
+  0% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* ─── Pulse on Click ─── */
+.click-ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 40;
+  animation: rippleExpand 0.6s ease-out forwards;
+}
+
+@keyframes rippleExpand {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+  }
+}
+
+/* ─── Emotion Wave (after choice) ─── */
+.emotion-wave {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 12;
+  animation: emotionWave 1.5s ease-out forwards;
+}
+
+@keyframes emotionWave {
+  from {
+    transform: translate(-50%, 50%) scale(0);
+    opacity: 0.5;
+  }
+  to {
+    transform: translate(-50%, 50%) scale(8);
+    opacity: 0;
+  }
+}
+
+.emotion-wave.grateful {
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.3) 0%, transparent 70%);
+}
+
+.emotion-wave.sad {
+  background: radial-gradient(circle, rgba(122, 139, 168, 0.3) 0%, transparent 70%);
+}
+
+.emotion-wave.love {
+  background: radial-gradient(circle, rgba(244, 208, 63, 0.4) 0%, transparent 70%);
+}
+
+.emotion-wave.determined {
+  background: radial-gradient(circle, rgba(199, 149, 90, 0.3) 0%, transparent 70%);
+}
